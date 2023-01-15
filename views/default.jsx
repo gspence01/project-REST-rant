@@ -7,7 +7,6 @@ function Default (html) {
                 <title>Title</title>
             </head>
             <body>
-                <h1>Welcome!</h1>
                 {html.children}
             </body>
         </html>
