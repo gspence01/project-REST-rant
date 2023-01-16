@@ -20,5 +20,9 @@ app.get('*', (req, res)=>{
     res.status(404) .render('error404')
 });
 
+app.post('/places', (req, res)=>{
+    res.send('places stub')
+})
+
 //Listen for connections
 app.listen(process.env.PORT);
