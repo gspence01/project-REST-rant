@@ -17,8 +17,12 @@ router.get('/:id', (req, res)=>{
         res.render('error404')
     } 
     else {
-        res.render('places/show', {place: places[id]})
+        res.render('places/show', {place: places[id], id})
     }
+})
+
+router.get('/:id/edit', (req, res)=>{
+    res.send('edit')
 })
 
 router.post('/', (req, res)=>{
@@ -35,5 +39,9 @@ router.post('/', (req, res)=>{
     places.push(req.body)
     res.redirect('/places')
 })
+
+router.delete('/:id', (req, res) => {
+    res.status(303).redirect('/')
+  })
 
 module.exports = router
