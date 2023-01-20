@@ -22,6 +22,11 @@ router.get('/:id', (req, res)=>{
 })
 
 router.get('/:id/edit', (req, res)=>{
+    let id = Number(req.params.id)
+    res.render('places/edit', {place: places[id], id})
+})
+
+router.put('/:id', (req, res)=>{
     res.send('edit')
 })
 
