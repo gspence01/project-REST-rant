@@ -3,10 +3,21 @@ const Default = require('../default')
 
 function show (data) {
     let comments = (
-        <h3 className="inactive">No comments yet!</h3>
+        <h4 style={{color: "grey"}}>No comments yet!</h4>
+    )
+
+    let rating = (
+        <h4 style={{color: "grey"}}>Not yet rated</h4>
     )
 
     if(data.place.comments.length) {
+        let sumRatings = data.place.comments.reduce((tot, c) =>{
+            return tot + c.stars
+        }, 0)
+        let averageRating = sumRatings/data.place.comments.length
+        rating = (
+            <h4>{Math.round(averageRating)} stars</h4>
+        )
         comments = data.place.comments.map((c, index) => {
             return (   
                 <div className="col-5" key={c.id}>
@@ -28,7 +39,7 @@ function show (data) {
     return (
         <Default>
             <main>
-                <div className='d-flex flex-row justify-content-between'>
+                <div className='d-flex flex-row justify-content-center'>
                     <div>
                         <img src = {data.place.pic}></img>
                         <h3>Located in {data.place.city}, {data.place.state}</h3>
@@ -36,7 +47,7 @@ function show (data) {
                     <div>
                         <h1>{data.place.name}</h1>
                         <h2>Rating</h2>
-                        <p>Not Rated</p>
+                        {rating}
                         <h2>Description</h2>
                         <h4>{data.place.showEstablished()}</h4>
                         <p>Serving {data.place.cuisines}</p>
@@ -62,15 +73,17 @@ function show (data) {
                     </div>
                     <div className='form-group'>
                         <label htmlFor='Content'>Content</label>
-                        <input type= 'textarea' className ="form-control" id='content' name='content'/>
+                        <textarea className ="form-control" id='content' name='content'></textarea>
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='stars'>Rating</label>
-                        <input type= 'number' step='0.5' className ="form-control" id='stars' name='stars'/>
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor='rant'>Rant</label>
-                        <input type= 'checkbox' className ="form-control" id='rant' name='rant'/>
+                    <div className="row">
+                        <div className='col form-group'>
+                            <label htmlFor='stars'>Rating</label>
+                            <input type= 'number' step='0.5' className ="form-control" id='stars' name='stars'/>
+                        </div>
+                        <div className='col form-group'>
+                            <label htmlFor='rant'>🤬Rant🤬 </label>
+                            <input type= 'checkbox' id='rant' name='rant'/>
+                        </div>
                     </div>
                     <input className = "btn btn-primary" type='submit' value='Add Comment' />
                 </form>
