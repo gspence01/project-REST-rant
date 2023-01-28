@@ -4,8 +4,8 @@ h1{
 }
 
 img{
-    height: 300px;
-    width:auto;
+    height: auto;
+    width:40vw;
 }
 
 nav {
@@ -44,5 +44,11 @@ body {
     margin-right: 20px;
     margin-left: 20px;
     background-color: white;
+    padding: 20px;
   }
-  
+
+.container{
+    overflow: auto;
+    width: max-content;
+    border: 2px solid lightblue;
+}
